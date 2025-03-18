@@ -21,4 +21,4 @@ With over 20 years of experience, I design and deliver enterprise-grade cloud so
 #### Let’s Connect
 
 - [LinkedIn](https://www.linkedin.com/in/traceherrell)
-- [Portfolio site, if applicable](https://traceherrell.github.io/traceherrell)
+- [Portfolio site](https://traceherrell.github.io/traceherrell)

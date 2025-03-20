@@ -1,12 +1,10 @@
-import { useRef } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-
+import { Link } from "react-router-dom";
+import Layout from "./components/Layout";
 import profile from "/herrell_trace_profile.jpg";
 
 function Profile() {
   return (
-    <>
+    <Layout>
       <div className="margin-medium main center">
         <div className="grid">
           <div className="s12 m6">
@@ -39,7 +37,7 @@ function Profile() {
         <div className="medium-space" />
 
         <div className="medium-margin large-text">
-          <div id="about-me">
+          {/* <div id="about-me">
             I am a full-stack software engineer and cloud architect with over 20
             years of experience in the industry. Consistently delivers scalable,
             secure, and performant solutions while leading and mentoring
@@ -94,65 +92,8 @@ function Profile() {
               Children's Hospital
             </a>
             .
-          </div>
+          </div> */}
           <div className="small-space" />
-          <div className="">
-            I can help you with a wide range of services, including:
-          </div>
-          <div className="large-margin">
-            <div className="row">
-              <i>terminal</i>Software development
-            </div>
-            <div className="row">
-              <i>cloud</i>Cloud migration
-            </div>
-            <div className="row">
-              <i>security</i>Security and compliance
-            </div>
-            <div className="row">
-              <i>manage_accounts</i>Managed services
-            </div>
-          </div>
-
-          <p>
-            I am passionate about helping small businesses succeed. I understand
-            the challenges that you face and I am committed to providing you
-            with the resources you need to succeed. Contact me today for a free
-            consultation. I will assess your needs and develop a custom plan to
-            help you achieve your goals.
-          </p>
-
-          <div className="small-space" />
-          <div>
-            Here are some additional details about each of the services I can
-            offer:
-          </div>
-
-          <ul className="large-margin">
-            <li className="small-padding">
-              Software development: I can help you develop custom software
-              applications to meet your specific needs. I have experience with a
-              variety of programming languages and technologies, including
-              JavaScript, Python, Rust, and .NET C#.
-            </li>
-            <li className="small-padding">
-              Cloud migration: I can help you migrate your existing applications
-              to the cloud. I have experience with a variety of cloud platforms,
-              including Amazon Web Services (AWS), Microsoft Azure, and Google
-              Cloud Platform (GCP).
-            </li>
-            <li className="small-padding">
-              Security and compliance: I can help you assess your security
-              posture and implement security controls. I have experience with a
-              variety of security standards, including PCI DSS, HIPAA, and SOX.
-            </li>
-            <li className="small-padding">
-              Managed services: I can provide managed services by handling tasks
-              such as system administration, network administration, and
-              disaster recovery. I have experience with a variety of IT
-              infrastructure, including servers, storage, and networking.
-            </li>
-          </ul>
         </div>
         <div className="small-space" />
         <div className="grid medium-margin">
@@ -232,7 +173,74 @@ function Profile() {
           </div>
         </div>
       </div>
-    </>
+
+      <div className="medium-margin">
+        <h2>Featured Projects</h2>
+        <div className="grid">
+          <div className="s12 m4">
+            <div className="card">
+              <div className="card-image">
+                <img
+                  src="/Screenshot_20230130_102739.png"
+                  alt="Ford Configuration"
+                />
+              </div>
+              <div className="card-content">
+                <h5>Ford Configuration</h5>
+                <p>
+                  Advanced vehicle configuration platform for Ford customers
+                </p>
+              </div>
+              <div className="card-action">
+                <Link to="/projects/ford" className="primary button">
+                  View Project
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="s12 m4">
+            <div className="card">
+              <div className="card-image">
+                <img
+                  src="/Screenshot_20230216_113936.png"
+                  alt="T-Mobile Nessie"
+                />
+              </div>
+              <div className="card-content">
+                <h5>T-Mobile Nessie</h5>
+                <p>Network analysis and optimization tool for T-Mobile</p>
+              </div>
+              <div className="card-action">
+                <Link to="/projects/tmobile" className="primary button">
+                  View Project
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="s12 m4">
+            <div className="card">
+              <div className="card-image">
+                <img
+                  src="/Screenshot 2023-03-03 133201.png"
+                  alt="Bluetooth Qualification"
+                />
+              </div>
+              <div className="card-content">
+                <h5>Bluetooth Qualification</h5>
+                <p>Device certification platform for Bluetooth SIG</p>
+              </div>
+              <div className="card-action">
+                <Link to="/projects/bluetooth" className="primary button">
+                  View Project
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Layout>
   );
 }
 

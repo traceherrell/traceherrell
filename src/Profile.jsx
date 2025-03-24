@@ -50,78 +50,78 @@ function Profile() {
         </div>
         <div className="small-space" />
         <div className="grid medium-margin">
-          <div className="s12 m6 l3">
-            <h5>
+          <div className="s12 m6 l4">
+            {/* <h5>
               <i className="fab fa-react" /> React
             </h5>
             <p>
-              I've built a couple of projects as well as leading new end teams.
-              Redux state management, story book components
+              
+            </p> */}
+            <h5>
+              <i className="fab fa-redhat" /> Red Hat
+            </h5>
+            <p>
+              Red Hat OpenShift on AWS (ROSA), Microsoft Azure Red Hat OpenShift
+              (ARO), Redhat OpenShift AI, Kubernetes, Podman, Argo, ArgoCD, Helm
+              Charts, Operators, Istio, Terraform, Vault.
             </p>
           </div>
-          <div className="s12 m6 l3">
-            <h5>
+          <div className="s12 m6 l4">
+            {/* <h5>
               <i className="fab fa-vuejs" /> Vue
             </h5>
             <p>
               Introduced Bluetooth to Vue and led the adoption state management
               (Vuex) as a design pattern.
-            </p>
-          </div>
-          <div className="s12 m6 l3">
+            </p> */}
             <h5>
-              <i className="fab fa-microsoft" /> .Net Core
+              <i className="fab fa-microsoft" /> Azure
             </h5>
             <p>
-              Micro services. Queues, Event Sourcing, Repository, Dependency
-              injection.
-            </p>
-          </div>
-          <div className="s12 m6 l3">
-            <h5>
-              <i className="fab fa-docker" /> Docker
-            </h5>
-            <p>
-              Azure container services (ACS), Azure Kubernetes Service (AKS),
-              Azure DevOps.
+              GitHub Actions, Azure Functions, Azure Kubernetes Service (AKS),
+              Azure API Management, Azure SQL, Cosmos DB, Redis Cache, Azure
+              Active Directory (Entra), Azure App Services, Azure Logic Apps.
             </p>
           </div>
 
-          <div className="s12 m6 l3">
+          <div className="s12 m6 l4">
             <h5>
-              <i className="fa fa-lg fa-html5" /> HTML/CSS
+              <i className="fab fa-aws" /> Amazon
             </h5>
             <p>
-              Implement responsive designs for a usable experience across
-              desktop, tablet, and phone browsers.
+              AWS Lambda, API Gateway, DynamoDB, S3, RDS, CloudFormation,
+              CloudWatch, IAM, Cognito, SNS, SQS, Step Functions, Amplify, Code
+              Build.
             </p>
           </div>
-          <div className="s12 m6 l3">
+          <div className="s12 m6 l4">
             <h5>
               <i className="fa fa-lg fa-code" /> Code
             </h5>
             <p>
-              Well versed in functional and OO programming. I primarily write
-              JavaScript, and C#. Recently new to Rust
+              JavaScript, TypeScript, Golang, Python, C#, Java, PHP, HTML, CSS,
+              SCSS, Less, PowerShell, Bash. Node, React, Vue, Svelte, Express,
+              NestJS, NextJS, GraphQL, Webpack, Babel, Jest, Veet, Cypress.
             </p>
           </div>
-          <div className="s12 m6 l3">
-            <h5>
-              <i className="fa fa-lg fa-cloud" /> API
-            </h5>
-            <p>
-              Develop RESTful interfaces that incorporate stateless designs,
-              self-descriptive messages and semantic URLs. Apigee, Azure Api
-              Management.
-            </p>
-          </div>
-          <div className="s12 m6 l3">
+          <div className="s12 m6 l4">
             <h5 className="sub-heading">
               <i className="fa fa-lg fa-database" /> Database
             </h5>
             <p>
-              Relational, Document, Azure SQL Server, Cosmos, Mongo, Redis,
-              T-SQL, Modeling, Query optimization.
+              SQL Server, MySQL, PostgreSQL, Oracle, MongoDB, Cosmos DB, Redis
+              Cache, DynamoDB, SQLite, Firebase, Firestore.
+            </p>
+          </div>
+
+          <div className="s12 m6 l4">
+            <h5>
+              <i className="fa fa-lg fa-cloud" /> API
+            </h5>
+            <p>
+              REST, GraphQL, gRPC, SOAP, WebSockets, Serverless, Microservices,
+              Nignx, API Gateway, Swagger, OpenAPI, Postman. Go, Node, Expres,
+              NestJS, .NET Core, Spring Boot.
             </p>
           </div>
         </div>

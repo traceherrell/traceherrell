@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import Layout from "./components/Layout";
 import profile from "/herrell_trace_profile.jpg";
 
+const scrollTo = (id) => {
+  const element = document.getElementById(id);
+  element.scrollIntoView({ behavior: "smooth" });
+};
+
 function Profile() {
   return (
     <Layout>
@@ -27,7 +32,11 @@ function Profile() {
                 Azure, Kubernetes, and modern JavaScript frameworks.
               </h6>
               <div className="small-space" />
-              <button style={{ marginLeft: 0 }} className="primary small-round">
+              <button
+                onClick={() => scrollTo("featured-projects")}
+                style={{ marginLeft: 0 }}
+                className="primary small-round"
+              >
                 Read More
               </button>
               <div className="small-space" />
@@ -119,7 +128,7 @@ function Profile() {
 
         <div className="small-space" />
         <div className="medium-margin">
-          <h2>Featured Projects</h2>
+          <h2 id="featured-projects">Featured Projects</h2>
           <div className="small-space" />
           <div className="grid">
             <div className="s12 m4">

@@ -24,12 +24,35 @@ function BluetoothProject() {
       description:
         "Search functionality for finding Bluetooth devices and certification details in the database.",
     },
+    {
+      src: "/bluetooth-tcm1.png",
+      alt: "Bluetooth Qualification Platform",
+      title: "Test Case Management",
+      description:
+        "Detailed view of test case management for Bluetooth device certification.",
+    },
+    {
+      src: "/bluetooth-tcm2.png",
+      alt: "Bluetooth Qualification Platform",
+      title: "Test Case Management",
+      description:
+        "Detailed view of test case management for Bluetooth device certification.",
+    },
+    {
+      src: "/bluetooth-tcm3.png",
+      alt: "Bluetooth Qualification Platform",
+      title: "Test Case Management",
+      description:
+        "Detailed view of test case management for Bluetooth device certification.",
+    },
   ];
 
   return (
     <Layout>
       <div className="medium-margin">
-        <h1>Bluetooth Qualification Platform - Launch Studio</h1>
+        <h1 className="margin-left">
+          Bluetooth Qualification Platform - Launch Studio
+        </h1>
 
         <div className="card medium-margin">
           <div className="card-content">

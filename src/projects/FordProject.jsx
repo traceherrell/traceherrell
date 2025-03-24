@@ -50,7 +50,7 @@ function FordProject() {
   return (
     <Layout>
       <div className="medium-margin">
-        <h1>Ford Vehicle Configuration </h1>
+        <h1 className="margin-left">Ford Vehicle Configuration </h1>
 
         <div className="card medium-margin">
           <div className="card-content">

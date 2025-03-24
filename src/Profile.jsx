@@ -34,66 +34,10 @@ function Profile() {
             </div>
           </div>
         </div>
-        <div className="medium-space" />
+        <div className="large-space" />
 
         <div className="medium-margin large-text">
-          {/* <div id="about-me">
-            I am a full-stack software engineer and cloud architect with over 20
-            years of experience in the industry. Consistently delivers scalable,
-            secure, and performant solutions while leading and mentoring
-            high-performing development teams. Proven track record of improving
-            deployment efficiency, infrastructure automation, and application
-            modernization for Fortune 500 clients, including{" "}
-            <a
-              className="bold underline"
-              target="_blank"
-              href="https://www.bluetooth.org"
-            >
-              Bluetooth SIG
-            </a>
-            ,{" "}
-            <a
-              className="bold underline"
-              target="_blank"
-              href="https://www.t-mobile.com"
-            >
-              T-Mobile
-            </a>
-            ,{" "}
-            <a
-              className="bold underline"
-              target="_blank"
-              href="https://www.adobe.com"
-            >
-              Adobe
-            </a>
-            ,{" "}
-            <a
-              className="bold underline"
-              target="_blank"
-              href="https://www.redhat.com"
-            >
-              RedHat
-            </a>
-            ,{" "}
-            <a
-              className="bold underline"
-              target="_blank"
-              href="https://www.johnlscott.com"
-            >
-              John L Scott
-            </a>
-            , and{" "}
-            <a
-              className="bold underline"
-              target="_blank"
-              href="https://www.seattlechildrens.org"
-            >
-              Children's Hospital
-            </a>
-            .
-          </div> */}
-          <div className="small-space" />
+          <h2>Experience</h2>
         </div>
         <div className="small-space" />
         <div className="grid medium-margin">
@@ -172,69 +116,67 @@ function Profile() {
             </p>
           </div>
         </div>
-      </div>
 
-      <div className="medium-margin">
-        <h2>Featured Projects</h2>
-        <div className="grid">
-          <div className="s12 m4">
-            <div className="card">
-              <div className="card-image">
-                <img
-                  src="/Screenshot_20230130_102739.png"
-                  alt="Ford Configuration"
-                />
-              </div>
-              <div className="card-content">
-                <h5>Ford Configuration</h5>
-                <p>
-                  Advanced vehicle configuration platform for Ford customers
-                </p>
-              </div>
-              <div className="card-action">
-                <Link to="/projects/ford" className="primary button">
-                  View Project
-                </Link>
+        <div className="small-space" />
+        <div className="medium-margin">
+          <h2>Featured Projects</h2>
+          <div className="small-space" />
+          <div className="grid">
+            <div className="s12 m4">
+              <div className="card">
+                <div className="card-image">
+                  <img src="/ford-config.png" alt="Ford Configuration" />
+                </div>
+                <div className="card-content">
+                  <h5>Ford Configuration</h5>
+                  <p>
+                    Advanced vehicle configuration platform for Ford customers
+                  </p>
+                </div>
+                <div className="card-action">
+                  <Link to="/projects/ford" className="primary button">
+                    View Project
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="s12 m4">
-            <div className="card">
-              <div className="card-image">
-                <img
-                  src="/Screenshot_20230216_113936.png"
-                  alt="T-Mobile Nessie"
-                />
-              </div>
-              <div className="card-content">
-                <h5>T-Mobile Nessie</h5>
-                <p>Network analysis and optimization tool for T-Mobile</p>
-              </div>
-              <div className="card-action">
-                <Link to="/projects/tmobile" className="primary button">
-                  View Project
-                </Link>
+            <div className="s12 m4">
+              <div className="card">
+                <div className="card-image">
+                  <img src="/t-mobile-nessie.png" alt="T-Mobile Nessie" />
+                </div>
+                <div className="card-content">
+                  <h5>T-Mobile Nessie</h5>
+                  <p>
+                    Change control and governance for T-Mobile Network devices{" "}
+                  </p>
+                </div>
+                <div className="card-action">
+                  <Link to="/projects/tmobile" className="primary button">
+                    View Project
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="s12 m4">
-            <div className="card">
-              <div className="card-image">
-                <img
-                  src="/Screenshot 2023-03-03 133201.png"
-                  alt="Bluetooth Qualification"
-                />
-              </div>
-              <div className="card-content">
-                <h5>Bluetooth Qualification</h5>
-                <p>Device certification platform for Bluetooth SIG</p>
-              </div>
-              <div className="card-action">
-                <Link to="/projects/bluetooth" className="primary button">
-                  View Project
-                </Link>
+            <div className="s12 m4">
+              <div className="card">
+                <div className="card-image">
+                  <img
+                    src="/bluetooth-launchstudio.png"
+                    alt="Bluetooth Qualification"
+                  />
+                </div>
+                <div className="card-content">
+                  <h5>Bluetooth Qualification</h5>
+                  <p>Device certification platform for Bluetooth SIG</p>
+                </div>
+                <div className="card-action">
+                  <Link to="/projects/bluetooth" className="primary button">
+                    View Project
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

@@ -5,66 +5,55 @@ function TMobileProject() {
   const images = [
     {
       src: "/t-mobile-nessie.png",
-      alt: "T-Mobile Nessie Dashboard",
-      title: "Nessie Network Dashboard",
-      description:
-        "The main dashboard of the Nessie platform showing network performance metrics and anomaly detection visualization.",
+      alt: "T-Mobile Nessie Landing Page",
+      title: "Nessie Landing Page",
+      description: "The landing page of the Nessie platform .",
     },
     {
       src: "/t-mobile-nessie1.png",
-      alt: "Network Analysis Tool",
-      title: "Network Analysis Interface",
+      alt: "Nessie Service Request",
+      title: "Nessie Service Request",
       description:
-        "Advanced analytics interface for network engineers to identify and diagnose network performance issues.",
+        "Service request interface for network engineers to request network optimization services.",
     },
     {
       src: "/t-mobile-nessie2.png",
-      alt: "Network Analysis Tool",
-      title: "Network Analysis Interface",
+      alt: "Service Request Log",
+      title: "Nessie Service Request Log",
       description:
-        "Advanced analytics interface for network engineers to identify and diagnose network performance issues.",
+        "Service request log for network engineers to track the status of their service requests.",
     },
     {
       src: "/t-mobile-nessie3.png",
-      alt: "Network Analysis Tool",
-      title: "Network Analysis Interface",
+      alt: "Nessie Mulitple Service Requests",
+      title: "Nessie Mulitple Service Requests",
       description:
-        "Advanced analytics interface for network engineers to identify and diagnose network performance issues.",
+        "Network engineers can submit multiple service requests simultaneously.",
     },
   ];
 
   return (
     <Layout>
       <div className="medium-margin">
-        <h1>T-Mobile Nessie Platform</h1>
+        <h1 className="margin-left">T-Mobile Nessie Platform</h1>
 
         <div className="card medium-margin">
           <div className="card-content">
             <h3>Project Overview</h3>
             <p>
-              The T-Mobile Nessie platform is a sophisticated network analysis
-              and optimization tool that enables network engineers to monitor,
-              analyze, and optimize T-Mobile's nationwide cellular network. The
-              platform processes terabytes of network data daily to provide
-              real-time insights and automated remediation recommendations.
+              The T-Mobile Nessie platform is a front end to Ansible Automation
+              Platform that provides visibliblity, governance, automation, and
+              change management for T-Mobile's global network infrastructure.
             </p>
 
             <div className="small-space" />
 
             <h4>Key Features</h4>
             <ul className="large-margin">
-              <li className="small-padding">
-                Real-time network performance monitoring across all regions
-              </li>
-              <li className="small-padding">
-                AI-powered anomaly detection and root cause analysis
-              </li>
-              <li className="small-padding">
-                Predictive maintenance recommendations
-              </li>
-              <li className="small-padding">
-                Interactive network topology visualization
-              </li>
+              <li className="small-padding">Governance</li>
+              <li className="small-padding">Change management</li>
+              <li className="small-padding">Automation</li>
+
               <li className="small-padding">
                 Automated ticketing and alert management system
               </li>
@@ -106,7 +95,12 @@ function TMobileProject() {
             <div className="small-space" />
 
             <h4>Challenges & Solutions</h4>
-            <p></p>
+            <p>
+              One of the biggest challenges was integrating the Nessie platform
+              with T-Mobile's existing network infrastructure. We solved this
+              problem by creating a custom API that translated network data into
+              a format that the Nessie platform could understand.
+            </p>
           </div>
         </div>
       </div>

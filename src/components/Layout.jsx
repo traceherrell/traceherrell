@@ -16,10 +16,6 @@ const ButtonLink = ({ path, text }) => {
 };
 
 function Layout({ children }) {
-  const location = useLocation();
-  const isActive = (path) =>
-    location.pathname === path ? " primary" : " secondary";
-
   return (
     <div className="margin-small main center">
       <nav className="left m l xl">

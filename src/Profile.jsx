@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import Layout from "./components/Layout";
 import profile from "/herrell_trace_profile.jpg";
 
+const BASE_URL = import.meta.env.BASE_URL;
+const imagePath = (src) => `${BASE_URL}${src}`;
+
 const scrollTo = (id) => {
   const element = document.getElementById(id);
   element.scrollIntoView({ behavior: "smooth" });
@@ -51,12 +54,6 @@ function Profile() {
         <div className="small-space" />
         <div className="grid medium-margin">
           <div className="s12 m6 l4">
-            {/* <h5>
-              <i className="fab fa-react" /> React
-            </h5>
-            <p>
-              
-            </p> */}
             <h5>
               <i className="fab fa-redhat" /> Red Hat
             </h5>
@@ -67,13 +64,6 @@ function Profile() {
             </p>
           </div>
           <div className="s12 m6 l4">
-            {/* <h5>
-              <i className="fab fa-vuejs" /> Vue
-            </h5>
-            <p>
-              Introduced Bluetooth to Vue and led the adoption state management
-              (Vuex) as a design pattern.
-            </p> */}
             <h5>
               <i className="fab fa-microsoft" /> Azure
             </h5>
@@ -134,35 +124,19 @@ function Profile() {
             <div className="s12 m4">
               <div className="card">
                 <div className="card-image">
-                  <img src="ford-config.png" alt="Ford Configuration" />
+                  <img
+                    src={imagePath("ford-config.png")}
+                    alt="Ford Configuration"
+                  />
                 </div>
                 <div className="card-content">
                   <h5>Ford Configuration</h5>
                   <p>
-                    Advanced vehicle configuration platform for Ford customers
+                    Advanced vehicle configuration platform for Ford Engineers
                   </p>
                 </div>
                 <div className="card-action">
-                  <Link to="/projects/ford" className="primary button">
-                    View Project
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="s12 m4">
-              <div className="card">
-                <div className="card-image">
-                  <img src="t-mobile-nessie.png" alt="T-Mobile Nessie" />
-                </div>
-                <div className="card-content">
-                  <h5>T-Mobile Nessie</h5>
-                  <p>
-                    Change control and governance for T-Mobile Network devices{" "}
-                  </p>
-                </div>
-                <div className="card-action">
-                  <Link to="/projects/tmobile" className="primary button">
+                  <Link to="/ford" className="primary button">
                     View Project
                   </Link>
                 </div>
@@ -173,7 +147,29 @@ function Profile() {
               <div className="card">
                 <div className="card-image">
                   <img
-                    src="bluetooth-launchstudio.png"
+                    src={imagePath("t-mobile-nessie.png")}
+                    alt="T-Mobile Nessie"
+                  />
+                </div>
+                <div className="card-content">
+                  <h5>T-Mobile Nessie</h5>
+                  <p>
+                    Change control and governance for T-Mobile Network devices{" "}
+                  </p>
+                </div>
+                <div className="card-action">
+                  <Link to="/tmobile" className="primary button">
+                    View Project
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="s12 m4">
+              <div className="card">
+                <div className="card-image">
+                  <img
+                    src={imagePath("bluetooth-launchstudio.png")}
                     alt="Bluetooth Qualification"
                   />
                 </div>
@@ -182,7 +178,7 @@ function Profile() {
                   <p>Device certification platform for Bluetooth SIG</p>
                 </div>
                 <div className="card-action">
-                  <Link to="/projects/bluetooth" className="primary button">
+                  <Link to="/bluetooth" className="primary button">
                     View Project
                   </Link>
                 </div>

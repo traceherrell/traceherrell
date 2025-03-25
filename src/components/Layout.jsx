@@ -10,22 +10,20 @@ function Layout({ children }) {
           Home
         </Link>
         <Link
-          to="/projects/ford"
-          className={location.pathname === "/projects/ford" ? "active" : ""}
+          to="/ford"
+          className={location.pathname === "/ford" ? "active" : ""}
         >
           Ford Configuration
         </Link>
         <Link
-          to="/projects/tmobile"
-          className={location.pathname === "/projects/tmobile" ? "active" : ""}
+          to="/tmobile"
+          className={location.pathname === "/tmobile" ? "active" : ""}
         >
           T-Mobile Nessie
         </Link>
         <Link
-          to="/projects/bluetooth"
-          className={
-            location.pathname === "/projects/bluetooth" ? "active" : ""
-          }
+          to="/bluetooth"
+          className={location.pathname === "/bluetooth" ? "active" : ""}
         >
           Bluetooth Qualification
         </Link>
@@ -35,22 +33,20 @@ function Layout({ children }) {
           Home
         </Link>
         <Link
-          to="/projects/ford"
-          className={location.pathname === "/projects/ford" ? "active" : ""}
+          to="/ford"
+          className={location.pathname === "/ford" ? "active" : ""}
         >
           Ford
         </Link>
         <Link
-          to="/projects/tmobile"
-          className={location.pathname === "/projects/tmobile" ? "active" : ""}
+          to="/tmobile"
+          className={location.pathname === "/tmobile" ? "active" : ""}
         >
           T-Mobile
         </Link>
         <Link
-          to="/projects/bluetooth"
-          className={
-            location.pathname === "/projects/bluetooth" ? "active" : ""
-          }
+          to="/bluetooth"
+          className={location.pathname === "/bluetooth" ? "active" : ""}
         >
           Bluetooth
         </Link>

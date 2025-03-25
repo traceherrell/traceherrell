@@ -4,27 +4,27 @@ import ImageGallery from "../components/ImageGallery";
 function TMobileProject() {
   const images = [
     {
-      src: "/t-mobile-nessie.png",
+      src: "t-mobile-nessie.png",
       alt: "T-Mobile Nessie Landing Page",
       title: "Nessie Landing Page",
       description: "The landing page of the Nessie platform .",
     },
     {
-      src: "/t-mobile-nessie1.png",
+      src: "t-mobile-nessie1.png",
       alt: "Nessie Service Request",
       title: "Nessie Service Request",
       description:
         "Service request interface for network engineers to request network optimization services.",
     },
     {
-      src: "/t-mobile-nessie2.png",
+      src: "t-mobile-nessie2.png",
       alt: "Service Request Log",
       title: "Nessie Service Request Log",
       description:
         "Service request log for network engineers to track the status of their service requests.",
     },
     {
-      src: "/t-mobile-nessie3.png",
+      src: "t-mobile-nessie3.png",
       alt: "Nessie Mulitple Service Requests",
       title: "Nessie Mulitple Service Requests",
       description:

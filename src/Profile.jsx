@@ -134,7 +134,7 @@ function Profile() {
             <div className="s12 m4">
               <div className="card">
                 <div className="card-image">
-                  <img src="/ford-config.png" alt="Ford Configuration" />
+                  <img src="ford-config.png" alt="Ford Configuration" />
                 </div>
                 <div className="card-content">
                   <h5>Ford Configuration</h5>
@@ -153,7 +153,7 @@ function Profile() {
             <div className="s12 m4">
               <div className="card">
                 <div className="card-image">
-                  <img src="/t-mobile-nessie.png" alt="T-Mobile Nessie" />
+                  <img src="t-mobile-nessie.png" alt="T-Mobile Nessie" />
                 </div>
                 <div className="card-content">
                   <h5>T-Mobile Nessie</h5>
@@ -173,7 +173,7 @@ function Profile() {
               <div className="card">
                 <div className="card-image">
                   <img
-                    src="/bluetooth-launchstudio.png"
+                    src="bluetooth-launchstudio.png"
                     alt="Bluetooth Qualification"
                   />
                 </div>

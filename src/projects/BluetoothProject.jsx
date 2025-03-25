@@ -4,42 +4,42 @@ import ImageGallery from "../components/ImageGallery";
 function BluetoothProject() {
   const images = [
     {
-      src: "/bluetooth-launchstudio.png",
+      src: "bluetooth-launchstudio.png",
       alt: "Bluetooth Qualification Platform",
       title: "Qualification Dashboard",
       description:
         "The main dashboard of the Bluetooth Qualification Platform showing device submission status and certification progress.",
     },
     {
-      src: "/bluetooth-launchstudio-new.png",
+      src: "bluetooth-launchstudio-new.png",
       alt: "Test Case Management",
       title: "Test Case Management",
       description:
         "Interface for managing test cases and compliance verification for Bluetooth device certification.",
     },
     {
-      src: "/bluetooth-launchstudio-search.png",
+      src: "bluetooth-launchstudio-search.png",
       alt: "Bluetooth Qualification Platform",
       title: "Launch Studio Search",
       description:
         "Search functionality for finding Bluetooth devices and certification details in the database.",
     },
     {
-      src: "/bluetooth-tcm1.png",
+      src: "bluetooth-tcm1.png",
       alt: "Bluetooth Qualification Platform",
       title: "Test Case Management",
       description:
         "Detailed view of test case management for Bluetooth device certification.",
     },
     {
-      src: "/bluetooth-tcm2.png",
+      src: "bluetooth-tcm2.png",
       alt: "Bluetooth Qualification Platform",
       title: "Test Case Management",
       description:
         "Detailed view of test case management for Bluetooth device certification.",
     },
     {
-      src: "/bluetooth-tcm3.png",
+      src: "bluetooth-tcm3.png",
       alt: "Bluetooth Qualification Platform",
       title: "Test Case Management",
       description:

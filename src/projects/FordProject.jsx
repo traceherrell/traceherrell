@@ -4,42 +4,42 @@ import ImageGallery from "../components/ImageGallery";
 function FordProject() {
   const images = [
     {
-      src: "/ford-config-1.png",
+      src: "ford-config-1.png",
       alt: "Ford Options Panel",
       title: "Vehicle Options Panel",
       description:
         "Detailed interface for selecting and customizing vehicle options, including interior, exterior, and performance features.",
     },
     {
-      src: "/ford-config-2.png",
+      src: "ford-config-2.png",
       alt: "Ford Options Panel",
       title: "Vehicle Options Panel",
       description:
         "Detailed interface for selecting and customizing vehicle options, including interior, exterior, and performance features.",
     },
     {
-      src: "/ford-config-3.png",
+      src: "ford-config-3.png",
       alt: "Ford Options Panel",
       title: "Vehicle Options Panel",
       description:
         "Detailed interface for selecting and customizing vehicle options, including interior, exterior, and performance features.",
     },
     {
-      src: "/ford-config-4.png",
+      src: "ford-config-4.png",
       alt: "Ford Options Panel",
       title: "Vehicle Options Panel",
       description:
         "Detailed interface for selecting and customizing vehicle options, including interior, exterior, and performance features.",
     },
     {
-      src: "/ford-config-5.png",
+      src: "ford-config-5.png",
       alt: "Ford Options Panel",
       title: "Vehicle Options Panel",
       description:
         "Detailed interface for selecting and customizing vehicle options, including interior, exterior, and performance features.",
     },
     {
-      src: "/ford-config-6.png",
+      src: "ford-config-6.png",
       alt: "Ford Options Panel",
       title: "Vehicle Options Panel",
       description:

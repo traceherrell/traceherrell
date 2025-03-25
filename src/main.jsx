@@ -11,7 +11,7 @@ import BluetoothProject from "./projects/BluetoothProject.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/traceherrell">
       <Routes>
         <Route path="/" element={<Profile />} />
         <Route path="/projects/ford" element={<FordProject />} />

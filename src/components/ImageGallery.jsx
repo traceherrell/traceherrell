@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-const BASE_URL = import.meta.env.BASE_URL;
-
 function ImageGallery({ images }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -9,7 +7,7 @@ function ImageGallery({ images }) {
     <div className="gallery-container">
       <div className="main-image-container">
         <img
-          src={`${BASE_URL}/${images[activeIndex].src}`}
+          src={images[activeIndex].src}
           alt={images[activeIndex].alt}
           className="main-gallery-image"
         />

@@ -2,9 +2,6 @@ import { Link } from "react-router-dom";
 import Layout from "./components/Layout";
 import profile from "/herrell_trace_profile.jpg";
 
-const BASE_URL = import.meta.env.BASE_URL;
-const imagePath = (src) => `${BASE_URL}${src}`;
-
 const scrollTo = (id) => {
   const element = document.getElementById(id);
   element.scrollIntoView({ behavior: "smooth" });
@@ -124,10 +121,7 @@ function Profile() {
             <div className="s12 m4">
               <div className="card">
                 <div className="card-image">
-                  <img
-                    src={imagePath("ford-config.png")}
-                    alt="Ford Configuration"
-                  />
+                  <img src="ford-config.png" alt="Ford Configuration" />
                 </div>
                 <div className="card-content">
                   <h5>Ford Configuration</h5>
@@ -146,10 +140,7 @@ function Profile() {
             <div className="s12 m4">
               <div className="card">
                 <div className="card-image">
-                  <img
-                    src={imagePath("t-mobile-nessie.png")}
-                    alt="T-Mobile Nessie"
-                  />
+                  <img src="t-mobile-nessie.png" alt="T-Mobile Nessie" />
                 </div>
                 <div className="card-content">
                   <h5>T-Mobile Nessie</h5>
@@ -169,7 +160,7 @@ function Profile() {
               <div className="card">
                 <div className="card-image">
                   <img
-                    src={imagePath("bluetooth-launchstudio.png")}
+                    src="bluetooth-launchstudio.png"
                     alt="Bluetooth Qualification"
                   />
                 </div>

@@ -23,10 +23,19 @@ body.light {
   --surface-variant: #e3e1ec;
   --on-surface-variant: #46464f;
   --outline: #767680;
-  --inverse-on-surface: #f3f0f5;
-  --inverse-surface: #303034;
-  --inverse-primary: #b9c3ff;
+  --outline-variant: #c7c5d0;
   --shadow: #000000;
+  --scrim: #000000;
+  --inverse-surface: #303034;
+  --inverse-on-surface: #f3f0f4;
+  --inverse-primary: #bcc2ff;
+  --surface-dim: #dcd9de;
+  --surface-bright: #fcf8fd;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f6f2f7;
+  --surface-container: #f0edf1;
+  --surface-container-high: #eae7ec;
+  --surface-container-highest: #e4e1e6;
   --font: Roboto
 }
 
@@ -121,28 +130,3 @@ body {
   justify-content: flex-end;
 }
 
-/* Navigation styling */
-nav {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem 0;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid var(--outline);
-}
-
-nav a {
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  color: var(--on-surface);
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-nav a:hover {
-  background-color: var(--surface-variant);
-}
-
-nav a.active {
-  background-color: var(--primary);
-  color: var(--on-primary);
-}

@@ -7,6 +7,21 @@ const scrollTo = (id) => {
   element.scrollIntoView({ behavior: "smooth" });
 };
 
+const ProfileCard = ({ title, description, link, src }) => (
+  <article className="no-padding s12 m6 l4">
+    <img className="responsive small" src={src} />
+    <div className="padding">
+      <h5>{title}</h5>
+      <p>{description}</p>
+      <nav>
+        <Link to={link} className="primary button small-round">
+          View Project
+        </Link>
+      </nav>
+    </div>
+  </article>
+);
+
 function Profile() {
   return (
     <Layout>
@@ -118,63 +133,24 @@ function Profile() {
           <h2 id="featured-projects">Featured Projects</h2>
           <div className="small-space" />
           <div className="grid">
-            <div className="s12 m4">
-              <div className="card">
-                <div className="card-image">
-                  <img src="ford-config.png" alt="Ford Configuration" />
-                </div>
-                <div className="card-content">
-                  <h5>Ford Configuration</h5>
-                  <p>
-                    Advanced vehicle configuration platform for Ford Engineers
-                  </p>
-                </div>
-                <div className="card-action">
-                  <Link to="/ford" className="primary button">
-                    View Project
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="s12 m4">
-              <div className="card">
-                <div className="card-image">
-                  <img src="t-mobile-nessie.png" alt="T-Mobile Nessie" />
-                </div>
-                <div className="card-content">
-                  <h5>T-Mobile Nessie</h5>
-                  <p>
-                    Change control and governance for T-Mobile Network devices{" "}
-                  </p>
-                </div>
-                <div className="card-action">
-                  <Link to="/tmobile" className="primary button">
-                    View Project
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="s12 m4">
-              <div className="card">
-                <div className="card-image">
-                  <img
-                    src="bluetooth-launchstudio.png"
-                    alt="Bluetooth Qualification"
-                  />
-                </div>
-                <div className="card-content">
-                  <h5>Bluetooth Qualification</h5>
-                  <p>Device certification platform for Bluetooth SIG</p>
-                </div>
-                <div className="card-action">
-                  <Link to="/bluetooth" className="primary button">
-                    View Project
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <ProfileCard
+              title="Ford Configuration"
+              description="Advanced vehicle configuration platform for Ford Engineers"
+              link="/ford"
+              src="ford-config.png"
+            />
+            <ProfileCard
+              title="T-Mobile Nessie"
+              description="Change control and governance for T-Mobile Network devices"
+              link="/tmobile"
+              src="t-mobile-nessie.png"
+            />
+            <ProfileCard
+              title="Bluetooth Qualification"
+              description="Device certification platform for Bluetooth SIG Qualification"
+              link="/bluetooth"
+              src="bluetooth-launchstudio.png"
+            />
           </div>
         </div>
       </div>

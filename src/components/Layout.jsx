@@ -23,6 +23,7 @@ function Layout({ children }) {
         <ButtonLink path="/ford" text="Ford" />
         <ButtonLink path="/tmobile" text="T-Mobile" />
         <ButtonLink path="/bluetooth" text="Bluetooth" />
+        <ButtonLink path="/2048" text="2048" />
       </nav>
 
       {children}

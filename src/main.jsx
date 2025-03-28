@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import "beercss";
 import "material-dynamic-colors";
 import "./index.css";
@@ -11,7 +11,7 @@ import Layout from "./components/Layout.jsx";
 import Game from "./games/2048/index.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
+  <HashRouter>
     <Layout>
       <Routes>
         <Route path="/" element={<Profile />} />
@@ -21,5 +21,5 @@ createRoot(document.getElementById("root")).render(
         <Route path="/2048" element={<Game />} />
       </Routes>
     </Layout>
-  </BrowserRouter>
+  </HashRouter>
 );

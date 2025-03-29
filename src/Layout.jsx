@@ -25,7 +25,10 @@ function Layout({ children }) {
         <NavLink path="/ford" text="Ford" icon="directions_car" />
         <NavLink path="/tmobile" text="T-Mobile" icon="phone" />
         <NavLink path="/bluetooth" text="Bluetooth" icon="bluetooth" />
-        <NavLink path="/2048" text="2048" icon="sports_esports" />
+
+        <Link to="/2048">2048</Link>
+
+        <Link to="/make24">Make 24</Link>
       </nav>
       <nav className="bottom s no-padding">
         <BottomNavLink path="/" icon="home" />

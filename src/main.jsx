@@ -7,8 +7,9 @@ import Profile from "./Profile.jsx";
 import FordProject from "./projects/FordProject.jsx";
 import TMobileProject from "./projects/TMobileProject.jsx";
 import BluetoothProject from "./projects/BluetoothProject.jsx";
-import Layout from "./components/Layout.jsx";
+import Layout from "./Layout.jsx";
 import Game from "./games/2048/index.jsx";
+import Make24Game from "./games/make24/index.jsx";
 
 createRoot(document.getElementById("root")).render(
   <HashRouter>
@@ -19,6 +20,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/tmobile" element={<TMobileProject />} />
         <Route path="/bluetooth" element={<BluetoothProject />} />
         <Route path="/2048" element={<Game />} />
+        <Route path="/make24" element={<Make24Game />} />
       </Routes>
     </Layout>
   </HashRouter>

@@ -105,5 +105,15 @@ body {
 
 
 
+/* Make DragOverlay card look like the original */
+#overlay {
+  cursor: grabbing !important; /* Indicate dragging */
+  box-shadow: var(--overlay-shadow, 0 8px 24px rgba(0, 0, 0, 0.2)); /* Add shadow */
+}
+
+.disabled {
+pointer-events: none; /* Prevent interaction with used cards */
+cursor: not-allowed !important;
+}
 
 

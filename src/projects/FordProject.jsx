@@ -1,5 +1,4 @@
-import Layout from "../components/Layout";
-import ImageGallery from "../components/ImageGallery";
+import ImageGallery from "../ImageGallery";
 
 function FordProject() {
   const images = [

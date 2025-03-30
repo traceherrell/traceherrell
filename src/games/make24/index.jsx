@@ -2,15 +2,17 @@ import React, { useState, useEffect, useCallback } from "react";
 import puzzles from "./puzzles";
 import ReactConfetti from "react-confetti";
 
+const MULTIPLY = "×";
+const DEVIDE = "÷";
+const ADD = "+";
+const SUBTRACT = "-";
+
 // get a random solution from the solutions file
 const getNewPuzzle = () => {
   const randomIndex = Math.floor(Math.random() * puzzles.length);
   return puzzles[randomIndex];
 };
-const MULTIPLY = "×";
-const DEVIDE = "÷";
-const ADD = "+";
-const SUBTRACT = "-";
+
 // Helper function to perform calculations
 const calculate = (num1, operator, num2) => {
   switch (operator) {
@@ -33,6 +35,8 @@ const calculate = (num1, operator, num2) => {
       return "error"; // Should not happen
   }
 };
+
+const calulateSequence = () => {};
 
 export const Make24Game = () => {
   // ----- State -----
@@ -216,7 +220,7 @@ export const Make24Game = () => {
   const OpButton = ({ op }) => {
     return (
       <button
-        className="large"
+        className="small"
         onClick={() => handleOperatorClick(op)}
         disabled={
           lastClickedType !== "number" ||

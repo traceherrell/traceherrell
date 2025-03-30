@@ -48,11 +48,9 @@ function BluetoothProject() {
 
   return (
     <div className="medium-margin">
-      <h1 className="margin-left">
-        Bluetooth Qualification Platform - Launch Studio
-      </h1>
+      <h1 className="">Bluetooth Qualification Platform - Launch Studio</h1>
 
-      <div className="card medium-margin">
+      <div className="">
         <div className="card-content">
           <h3>Project Overview</h3>
           <p>
@@ -67,7 +65,7 @@ function BluetoothProject() {
           <div className="small-space" />
 
           <h4>Key Features</h4>
-          <ul className="large-margin">
+          <ul className="">
             <li className="small-padding">
               End-to-end qualification workflow management
             </li>
@@ -91,7 +89,7 @@ function BluetoothProject() {
           <div className="small-space" />
 
           <h4>Technologies Used</h4>
-          <div className="row medium-margin">
+          <div className="row ">
             <span className="chip secondary">Vue.js</span>
             <span className="chip secondary">Vuex</span>
             <span className="chip secondary">.NET Core</span>
@@ -103,12 +101,12 @@ function BluetoothProject() {
         </div>
       </div>
 
-      <div className="medium-margin">
+      <div className="">
         <h3>Project Gallery</h3>
         <ImageGallery images={images} />
       </div>
 
-      <div className="card medium-margin">
+      <div className="card ">
         <div className="card-content">
           <h3>My Role</h3>
           <p>

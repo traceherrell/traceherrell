@@ -20,7 +20,7 @@ const BottomNavLink = ({ path, icon }) => {
 function Layout({ children }) {
   return (
     <div>
-      <nav className="margin-small left m l xl">
+      <nav className="margin-small left m l">
         <NavLink path="/" text="Home" icon="home" />
         <NavLink path="/ford" text="Ford" icon="directions_car" />
         <NavLink path="/tmobile" text="T-Mobile" icon="phone" />
@@ -33,14 +33,15 @@ function Layout({ children }) {
           <h6>24</h6>
         </Link>
       </nav>
-      <nav className="bottom s no-padding">
+
+      <div className="main scroll ">{children}</div>
+      <nav className="s bottom ">
         <BottomNavLink path="/" icon="home" />
         <BottomNavLink path="/ford" icon="directions_car" />
         <BottomNavLink path="/tmobile" icon="phone" />
         <BottomNavLink path="/bluetooth" icon="bluetooth" />
         <BottomNavLink path="/make24" icon="sports_esports" />
       </nav>
-      <div className=" main responsive">{children}</div>
     </div>
   );
 }

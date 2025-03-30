@@ -33,9 +33,9 @@ function TMobileProject() {
 
   return (
     <div className="medium-margin">
-      <h1 className="margin-left">T-Mobile Nessie Platform</h1>
+      <h1 className="">T-Mobile Nessie Platform</h1>
 
-      <div className="card medium-margin">
+      <div className=" ">
         <div className="card-content">
           <h3>Project Overview</h3>
           <p>
@@ -47,7 +47,7 @@ function TMobileProject() {
           <div className="small-space" />
 
           <h4>Key Features</h4>
-          <ul className="large-margin">
+          <ul className="">
             <li className="small-padding">Governance</li>
             <li className="small-padding">Change management</li>
             <li className="small-padding">Automation</li>
@@ -60,7 +60,7 @@ function TMobileProject() {
           <div className="small-space" />
 
           <h4>Technologies Used</h4>
-          <div className="row medium-margin">
+          <div className="row ">
             <span className="chip secondary">React</span>
             <span className="chip secondary">Material UI</span>
             <span className="chip secondary">Java Springboot</span>
@@ -72,12 +72,12 @@ function TMobileProject() {
         </div>
       </div>
 
-      <div className="medium-margin">
+      <div className="">
         <h3>Project Gallery</h3>
         <ImageGallery images={images} />
       </div>
 
-      <div className="card medium-margin">
+      <div className="">
         <div className="card-content">
           <h3>My Role</h3>
           <p>

@@ -7,23 +7,26 @@ const getNewPuzzle = () => {
   const randomIndex = Math.floor(Math.random() * puzzles.length);
   return puzzles[randomIndex];
 };
-
+const MULTIPLY = "×";
+const DEVIDE = "÷";
+const ADD = "+";
+const SUBTRACT = "-";
 // Helper function to perform calculations
 const calculate = (num1, operator, num2) => {
   switch (operator) {
-    case "+":
+    case ADD:
       return num1 + num2;
-    case "-":
+    case SUBTRACT:
       return num1 - num2;
-    case "×":
+    case MULTIPLY:
       return num1 * num2;
-    case "÷":
+    case DEVIDE:
       if (num2 === 0) {
         return "error"; // Division by zero
       }
       // Check if result is an integer for classic Make 24 rules
       // if (num1 % num2 !== 0) {
-      //   return 'error'; // Non-integer result (optional rule)
+      //   return 'error'; // Non-integer result (optional  rule)
       // }
       return num1 / num2;
     default:
@@ -101,7 +104,7 @@ export const Make24Game = () => {
 
   // Handle clicking a number button
   const handleNumberClick = useCallback(
-    (numValue, index) => {
+    (index) => {
       if (gameOver || !availableIndices.has(index)) {
         return; // Ignore click if game over or number already used
       }
@@ -111,6 +114,7 @@ export const Make24Game = () => {
         setMessage("Select an operator first.");
         return;
       }
+      const numValue = initialNumbers[index];
 
       const newSequence = [...displaySequence, numValue];
       setDisplaySequence(newSequence);
@@ -209,7 +213,37 @@ export const Make24Game = () => {
     },
     [gameOver, lastClickedType, currentValue, availableIndices.size]
   );
+  const OpButton = ({ op }) => {
+    return (
+      <button
+        className="large"
+        onClick={() => handleOperatorClick(op)}
+        disabled={
+          lastClickedType !== "number" ||
+          gameOver ||
+          availableIndices.size === 0
+        }
+      >
+        <h3>{op}</h3>
+      </button>
+    );
+  };
 
+  const NumButton = ({ index }) => {
+    return (
+      <button
+        className="large "
+        onClick={() => handleNumberClick(index)}
+        disabled={
+          !availableIndices.has(index) ||
+          lastClickedType === "number" ||
+          gameOver
+        }
+      >
+        <h5> {initialNumbers[index]}</h5>
+      </button>
+    );
+  };
   // ----- Render -----
   return (
     <div className="center-align">
@@ -224,9 +258,17 @@ export const Make24Game = () => {
         />
       )}
 
-      <div className="padding ">
-        <h2 className="">Make {target} Game</h2>
+      <div className="row padding center-align">
+        <h2 className="">Make {target}</h2>
         {/* <h6 className="">{message}</h6> */}
+        <button
+          className="chip circle"
+          onClick={() => setShowConfetti((prev) => !prev)} // For testing
+          // style={{ display: "none" }} // Hide for production
+        >
+          <i>help</i>
+          <div className="tooltip right">{solution}</div>
+        </button>
       </div>
 
       {/* Display Current Calculation */}
@@ -234,7 +276,7 @@ export const Make24Game = () => {
         <div className="row center-align ">
           <div className="row">
             {displaySequence.map((item, index) => (
-              <span>
+              <span key={index}>
                 <h3>{item}</h3>
               </span>
             ))}
@@ -246,41 +288,25 @@ export const Make24Game = () => {
       </div>
 
       {/* Number Buttons */}
-      <div className="padding">
-        <div className="row center-align">
-          {initialNumbers.map((num, index) => (
-            <button
-              className="large"
-              onClick={() => handleNumberClick(num, index)}
-              disabled={
-                !availableIndices.has(index) ||
-                lastClickedType === "number" ||
-                gameOver
-              }
-            >
-              <h5> {num}</h5>
-            </button>
-          ))}
-        </div>
+      <div className="row center-align ">
+        <NumButton index={0} />
+        <NumButton index={1} />
+      </div>
+      <div className="row center-align">
+        <NumButton index={2} />
+        <NumButton index={3} />
       </div>
 
+      <div className="small-space"> </div>
       {/* Operator Buttons */}
-      <div className="padding">
-        <div className="row center-align">
-          {["+", "-", "×", "÷"].map((op) => (
-            <button
-              className="large"
-              onClick={() => handleOperatorClick(op)}
-              disabled={
-                lastClickedType !== "number" ||
-                gameOver ||
-                availableIndices.size === 0
-              }
-            >
-              <h3>{op}</h3>
-            </button>
-          ))}
-        </div>
+
+      <div className="row  center-align">
+        <OpButton op={ADD} />
+        <OpButton op={SUBTRACT} />
+      </div>
+      <div className="row  center-align">
+        <OpButton op={MULTIPLY} />
+        <OpButton op={DEVIDE} />
       </div>
 
       {/* Control Buttons */}
@@ -293,7 +319,6 @@ export const Make24Game = () => {
             disabled={displaySequence.length === 0 && !gameOver}
           >
             <i>backspace</i>
-            <span>Clear Sequence</span>
           </button>
 
           <button
@@ -301,15 +326,6 @@ export const Make24Game = () => {
             onClick={startNewGame}
           >
             <i>refresh</i>
-            <span>New Game</span>
-          </button>
-          <button
-            className="chip circle"
-            onClick={() => setShowConfetti((prev) => !prev)} // For testing
-            // style={{ display: "none" }} // Hide for production
-          >
-            <i>help</i>
-            <div className="tooltip right">{solution}</div>
           </button>
         </div>
       </div>
@@ -317,11 +333,4 @@ export const Make24Game = () => {
   );
 };
 
-// Export the component for use in other files
 export default Make24Game;
-
-// Note: To use this in an existing application:
-// 1. Make sure React and BeerCSS are installed and setup.
-// 2. Save this entire code block as a .jsx file (e.g., Make24Game.jsx).
-// 3. Import it into your target component: `import Make24Game from './Make24Game';`
-// 4. Render it where desired: `<Make24Game />`

@@ -26,21 +26,17 @@ const calculate = (num1, operator, num2) => {
       if (num2 === 0) {
         return "error"; // Division by zero
       }
-      // Check if result is an integer for classic Make 24 rules
-      // if (num1 % num2 !== 0) {
-      //   return 'error'; // Non-integer result (optional  rule)
-      // }
+
       return num1 / num2;
     default:
       return "error"; // Should not happen
   }
 };
 
-const calulateSequence = () => {};
-
 export const Make24Game = () => {
   // ----- State -----
   const [target] = useState(24);
+  const [total, setTotal] = useState(null); // The total of the current round
   const [initialNumbers, setInitialNumbers] = useState([]); // The 4 numbers for the round
   const [solution, setSolution] = useState([]); // The solution to the current round
   const [availableIndices, setAvailableIndices] = useState(
@@ -57,54 +53,91 @@ export const Make24Game = () => {
     height: window.innerHeight,
   });
 
-  // Update window size for confetti
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
+  const calculateTotal = () => {
+    let result = null; // Initialize result to null
+    if (displaySequence.length === 0) {
+      setTotal(0);
+      return;
+    }
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    if (displaySequence.length === 3) {
+      setTotal(
+        calculate(displaySequence[0], displaySequence[1], displaySequence[2])
+      );
+      return;
+    }
 
-  // ----- Effects -----
-  // Initialize game on mount
+    if (displaySequence.length === 5) {
+      const first = calculate(
+        displaySequence[0],
+        displaySequence[1],
+        displaySequence[2]
+      );
+      const second = calculate(first, displaySequence[3], displaySequence[4]);
+      setTotal(second);
+      return;
+    }
+    if (displaySequence.length === 7) {
+      const first = calculate(
+        displaySequence[0],
+        displaySequence[1],
+        displaySequence[2]
+      );
+      const second = calculate(first, displaySequence[3], displaySequence[4]);
+      const third = calculate(second, displaySequence[5], displaySequence[6]);
+      if (
+        third !== target &&
+        (displaySequence[3] === MULTIPLY || displaySequence[5] === DEVIDE)
+      ) {
+        // try to add the right side first
+        const rightSide = calculate(
+          displaySequence[4],
+          displaySequence[5],
+          displaySequence[6]
+        );
+        result = calculate(first, displaySequence[3], rightSide);
+      } else {
+        result = third;
+      }
+
+      // Check if the result is equal to the target
+      if (result === target) {
+        setGameOver(true);
+        setMessage("You made 24! Click refresh to play again.");
+        setShowConfetti(true); // Show confetti on win
+      } else {
+        setMessage("-- 😒 --");
+      }
+      setTotal(result); // Update total with the calculated result
+    }
+  };
+
   useEffect(() => {
     startNewGame();
-  }, []); // Empty dependency array ensures this runs only once on mount
-
-  // ----- Callbacks / Handlers -----
+  }, []);
+  useEffect(() => {
+    calculateTotal();
+  }, [displaySequence]); // Recalculate total when displaySequence changes
 
   // Function to reset the board and generate new numbers
-  const startNewGame = useCallback(() => {
-    const puzzle = getNewPuzzle();
-
+  const startNewGame = () => {
+    clearSequence();
+    const puzzle = getNewPuzzle(); // Get a new puzzle
     setSolution(puzzle.solutions);
     setInitialNumbers(puzzle.input);
-    clearSequence();
+
     setMessage("Use the 4 numbers to make 24.");
-    setAvailableIndices(new Set([0, 1, 2, 3])); // Reset available numbers
-    // Ensure initial state is clean even if called multiple times
-    setCurrentValue(null);
+  };
+
+  const clearSequence = () => {
+    setTotal(0);
     setDisplaySequence([]);
     setLastClickedType(null);
     setGameOver(false);
     setShowConfetti(false); // Hide confetti when starting a new game
-  }, []); // No dependencies needed
-
-  // Function to clear the current user input sequence but keep the numbers
-  const clearSequence = useCallback(() => {
     setCurrentValue(null);
-    setDisplaySequence([]);
-    setLastClickedType(null);
     setAvailableIndices(new Set([0, 1, 2, 3])); // Make all numbers available again
-    setMessage("Sequence cleared. Start again.");
-    setGameOver(false);
-    setShowConfetti(false); // Hide confetti when clearing
-  }, []);
+  };
 
   // Handle clicking a number button
   const handleNumberClick = useCallback(
@@ -128,60 +161,10 @@ export const Make24Game = () => {
         return next;
       });
 
-      let nextValue;
-      let calculationError = false;
-
-      if (currentValue === null) {
-        // This is the first number clicked in the sequence
-        nextValue = numValue;
-      } else {
-        // An operator must have been the last click
-        const lastOperator = displaySequence[displaySequence.length - 1]; // The operator just before this number
-        const result = calculate(currentValue, lastOperator, numValue);
-
-        if (result === "error") {
-          setMessage(
-            "Invalid operation (e.g., division by zero). Sequence cleared."
-          );
-          calculationError = true;
-          // Reset sequence on error
-          setCurrentValue(null);
-          setDisplaySequence([]);
-          setLastClickedType(null);
-          setAvailableIndices(new Set([0, 1, 2, 3]));
-          setGameOver(true); // Mark as game over due to error
-          return; // Stop further processing for this click
-        } else {
-          nextValue = result;
-        }
-      }
-
-      setCurrentValue(nextValue);
       setLastClickedType("number");
-      setMessage("Number selected. Choose an operator or check result.");
+      setMessage("Number selected. Choose an operator.");
 
-      // Check for win condition immediately after a calculation completes
-      // Win condition: all numbers used and result is 24
-      const allNumbersUsed = availableIndices.size === 1; // It will be 1 because we just removed one, check if only 1 remains before this update
-
-      // Check win condition AFTER state updates might settle
-      // Use the size of the *newly updated* availableIndices
-      if (availableIndices.size === 1 && nextValue === target) {
-        // Check size should be 0 AFTER deletion
-        // Correction: Check size after the state update cycle. Let's use a check based on the sequence length
-        const numbersInSequence = newSequence.filter(
-          (item) => typeof item === "number"
-        ).length;
-        if (numbersInSequence === 4 && nextValue === target) {
-          setMessage(`Success! ${newSequence.join(" ")} = ${target}`);
-          setGameOver(true);
-          setShowConfetti(true); // Trigger confetti on win
-        } else if (numbersInSequence === 4 && nextValue !== target) {
-          setMessage(`Result is ${nextValue}, not ${target}. Try again!`);
-          // Optionally reset automatically or let user clear/retry
-          // clearSequence(); // Example: Auto-clear on incorrect final result
-        }
-      }
+      setCurrentValue(numValue); // Update current value with the selected number
     },
     [
       gameOver,
@@ -262,17 +245,9 @@ export const Make24Game = () => {
         />
       )}
 
-      <div className="row padding center-align">
+      <div className="center-align">
         <h2 className="">Make {target}</h2>
-        {/* <h6 className="">{message}</h6> */}
-        <button
-          className="chip circle"
-          onClick={() => setShowConfetti((prev) => !prev)} // For testing
-          // style={{ display: "none" }} // Hide for production
-        >
-          <i>help</i>
-          <div className="tooltip right">{solution}</div>
-        </button>
+        <p className="">{message}</p>
       </div>
 
       {/* Display Current Calculation */}
@@ -281,11 +256,11 @@ export const Make24Game = () => {
           <div className="row">
             {displaySequence.map((item, index) => (
               <span key={index}>
-                <h3>{item}</h3>
+                <h5>{item}</h5>
               </span>
             ))}
             <span>
-              <h3> = {currentValue}</h3>{" "}
+              <h5> = {total}</h5>{" "}
             </span>
           </div>
         </div>
@@ -333,6 +308,7 @@ export const Make24Game = () => {
           </button>
         </div>
       </div>
+      <div className="white-text">{solution}</div>
     </div>
   );
 };

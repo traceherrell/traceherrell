@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import puzzles from "./puzzles";
 import ReactConfetti from "react-confetti";
+import solutions from "./puzzles";
 
 const MULTIPLY = "×";
 const DEVIDE = "÷";
@@ -32,12 +33,21 @@ const calculate = (num1, operator, num2) => {
       return "error"; // Should not happen
   }
 };
+const defaultBox = {
+  initNum: 0,
+  currentNum: 0,
+  isSelected: false,
+  isUsed: false,
+};
 
 export const Make24Game = () => {
   // ----- State -----
   const [target] = useState(24);
   const [total, setTotal] = useState(null); // The total of the current round
-  const [initialNumbers, setInitialNumbers] = useState([]); // The 4 numbers for the round
+  const [puzzle, setPuzzle] = useState({ input: [0, 0, 0, 0], solutions: [] }); // The 4 numbers for the round
+  const [boxes, setBoxes] = useState([]); // The boxes for the numbers
+  const [selectedBoxIndex, setSelectedBoxIndex] = useState(null); // The index of the selected box
+  const history = []; // History of the game
   const [solution, setSolution] = useState([]); // The solution to the current round
   const [availableIndices, setAvailableIndices] = useState(
     new Set([0, 1, 2, 3])
@@ -53,118 +63,154 @@ export const Make24Game = () => {
     height: window.innerHeight,
   });
 
-  const calculateTotal = () => {
-    let result = null; // Initialize result to null
-    if (displaySequence.length === 0) {
-      setTotal(0);
-      return;
-    }
+  // const calculateTotal = () => {
+  //   let result = null; // Initialize result to null
+  //   if (displaySequence.length === 0) {
+  //     setTotal(0);
+  //     return;
+  //   }
 
-    if (displaySequence.length === 3) {
-      setTotal(
-        calculate(displaySequence[0], displaySequence[1], displaySequence[2])
-      );
-      return;
-    }
+  //   if (displaySequence.length === 3) {
+  //     setTotal(
+  //       calculate(displaySequence[0], displaySequence[1], displaySequence[2])
+  //     );
+  //     return;
+  //   }
 
-    if (displaySequence.length === 5) {
-      const first = calculate(
-        displaySequence[0],
-        displaySequence[1],
-        displaySequence[2]
-      );
-      const second = calculate(first, displaySequence[3], displaySequence[4]);
-      setTotal(second);
-      return;
-    }
-    if (displaySequence.length === 7) {
-      const first = calculate(
-        displaySequence[0],
-        displaySequence[1],
-        displaySequence[2]
-      );
-      const second = calculate(first, displaySequence[3], displaySequence[4]);
-      const third = calculate(second, displaySequence[5], displaySequence[6]);
-      if (
-        third !== target &&
-        (displaySequence[3] === MULTIPLY || displaySequence[5] === DEVIDE)
-      ) {
-        // try to add the right side first
-        const rightSide = calculate(
-          displaySequence[4],
-          displaySequence[5],
-          displaySequence[6]
-        );
-        result = calculate(first, displaySequence[3], rightSide);
-      } else {
-        result = third;
-      }
+  //   if (displaySequence.length === 5) {
+  //     const first = calculate(
+  //       displaySequence[0],
+  //       displaySequence[1],
+  //       displaySequence[2]
+  //     );
+  //     const second = calculate(first, displaySequence[3], displaySequence[4]);
+  //     setTotal(second);
+  //     return;
+  //   }
+  //   if (displaySequence.length === 7) {
+  //     const first = calculate(
+  //       displaySequence[0],
+  //       displaySequence[1],
+  //       displaySequence[2]
+  //     );
+  //     const second = calculate(first, displaySequence[3], displaySequence[4]);
+  //     const third = calculate(second, displaySequence[5], displaySequence[6]);
+  //     if (
+  //       third !== target &&
+  //       (displaySequence[3] === MULTIPLY || displaySequence[5] === DEVIDE)
+  //     ) {
+  //       // try to add the right side first
+  //       const rightSide = calculate(
+  //         displaySequence[4],
+  //         displaySequence[5],
+  //         displaySequence[6]
+  //       );
+  //       result = calculate(first, displaySequence[3], rightSide);
+  //     } else {
+  //       result = third;
+  //     }
 
-      // Check if the result is equal to the target
-      if (result === target) {
-        setGameOver(true);
-        setMessage("You made 24! Click refresh to play again.");
-        setShowConfetti(true); // Show confetti on win
-      } else {
-        setMessage("-- 😒 --");
-      }
-      setTotal(result); // Update total with the calculated result
-    }
-  };
+  //     // Check if the result is equal to the target
+  //     if (result === target) {
+  //       setGameOver(true);
+  //       setMessage("You made 24! Click refresh to play again.");
+  //       setShowConfetti(true); // Show confetti on win
+  //     } else {
+  //       setMessage("-- 😒 --");
+  //     }
+  //     setTotal(result); // Update total with the calculated result
+  //   }
+  // };
 
   useEffect(() => {
     startNewGame();
   }, []);
-  useEffect(() => {
-    calculateTotal();
-  }, [displaySequence]); // Recalculate total when displaySequence changes
+  // useEffect(() => {
+  //   calculateTotal();
+  // }, [displaySequence]); // Recalculate total when displaySequence changes
 
   // Function to reset the board and generate new numbers
   const startNewGame = () => {
+    const newPuzzle = getNewPuzzle(); // Get a new puzzle
+    setPuzzle(newPuzzle); // Get a new puzzle
+    setSolution(newPuzzle.solutions);
+    setBoxes([
+      { ...defaultBox, initNum: newPuzzle.input[0] },
+      { ...defaultBox, initNum: newPuzzle.input[1] },
+      { ...defaultBox, initNum: newPuzzle.input[2] },
+      { ...defaultBox, initNum: newPuzzle.input[3] },
+    ]); // Set the boxes with the new numbers
+    setTotal(0); // Reset the total
     clearSequence();
-    const puzzle = getNewPuzzle(); // Get a new puzzle
-    setSolution(puzzle.solutions);
-    setInitialNumbers(puzzle.input);
-
-    setMessage("Use the 4 numbers to make 24.");
   };
 
   const clearSequence = () => {
     setTotal(0);
+    setBoxes([
+      {
+        ...defaultBox,
+        initNum: puzzle.input[0],
+        currentNum: puzzle.input[0],
+      },
+      {
+        ...defaultBox,
+        initNum: puzzle.input[1],
+        currentNum: puzzle.input[1],
+      },
+      {
+        ...defaultBox,
+        initNum: puzzle.input[2],
+        currentNum: puzzle.input[2],
+      },
+      {
+        ...defaultBox,
+        initNum: puzzle.input[3],
+        currentNum: puzzle.input[3],
+      },
+    ]);
     setDisplaySequence([]);
     setLastClickedType(null);
     setGameOver(false);
     setShowConfetti(false); // Hide confetti when starting a new game
     setCurrentValue(null);
     setAvailableIndices(new Set([0, 1, 2, 3])); // Make all numbers available again
+    setMessage("Select your first number.");
+    setSelectedBoxIndex(null); // Reset selected box index
   };
 
   // Handle clicking a number button
   const handleNumberClick = useCallback(
     (index) => {
-      if (gameOver || !availableIndices.has(index)) {
-        return; // Ignore click if game over or number already used
-      }
+      let newSequence = [];
 
-      // Prevent clicking number right after another number
-      if (lastClickedType === "number") {
-        setMessage("Select an operator first.");
-        return;
+      console.log("index", index);
+      const numValue = currentNumbers[index]; // Get the number value
+      console.log("numValue", numValue);
+      if (displaySequence.length === 2) {
+        newSequence = [...displaySequence, numValue]; // Add the number to the sequence
+      } else {
+        newSequence = [numValue];
+        setTotal(null); // Start a new sequence with the number
       }
-      const numValue = initialNumbers[index];
-
-      const newSequence = [...displaySequence, numValue];
       setDisplaySequence(newSequence);
-      setAvailableIndices((prev) => {
-        const next = new Set(prev);
-        next.delete(index);
-        return next;
-      });
-
       setLastClickedType("number");
-      setMessage("Number selected. Choose an operator.");
 
-      setCurrentValue(numValue); // Update current value with the selected number
+      // calulate total
+      if (newSequence.length === 3) {
+        const first = calculate(newSequence[0], newSequence[1], newSequence[2]);
+        console.log("first", first);
+        setCurrentValue(first);
+        setTotal(first);
+        //swap
+        // find the index of the first number in the sequence
+        const firstIndex = currentNumbers.indexOf(newSequence[0]);
+        // find the index of the second number in the sequence
+        const secondIndex = currentNumbers.indexOf(newSequence[2]);
+        // set first number to null
+        currentNumbers[firstIndex] = null;
+        // set the second number to first
+        currentNumbers[secondIndex] = first;
+      }
     },
     [
       gameOver,
@@ -176,40 +222,84 @@ export const Make24Game = () => {
       clearSequence,
     ]
   );
+  const handleBoxClick = (index) => {
+    if (selectedBoxIndex === index) {
+      console.log("same box", index);
+      return;
+    }
+    boxes[index].isSelected = true; // Mark the box as selected
 
+    setBoxes([...boxes]); // Update the boxes state
+    console.log("selectedBoxIndex", selectedBoxIndex);
+    console.log("index", index);
+    if (selectedBoxIndex == null) {
+      console.log("first click", index);
+      setSelectedBoxIndex(index); // Set the selected box index
+      setDisplaySequence([boxes[index].currentNum]); // Set the display sequence to the selected number
+      setCurrentValue(boxes[index].currentNum); // Set the current value to the selected number
+      setLastClickedType("number"); // Set the last clicked type to number
+      setMessage("Number selected. Choose an operator."); // Update the message
+      return;
+    }
+
+    console.log("second click", index);
+    setDisplaySequence((prev) => {
+      const newSequence = [...prev]; // Create a new sequence array
+      newSequence.push(boxes[index].currentNum); // Add the selected number to the sequence
+      return newSequence; // Return the new sequence
+    });
+    let total = calculate(
+      displaySequence[0],
+      displaySequence[1],
+      boxes[index].currentNum
+    ); // Calculate the total
+    setTotal(total); // Update the total state
+    setCurrentValue(total); // Update the current value state
+    setLastClickedType("number"); // Set the last clicked type to number
+
+    // If the user clicks a different box, update the current value and display sequence
+    const selectedBox = boxes[selectedBoxIndex]; // Get the previously selected box
+    const newBox = boxes[index]; // Get the newly selected box
+    newBox.isSelected = true; // Mark the new box as selected
+    selectedBox.isSelected = false; // Mark the previous box as unselected
+    selectedBox.isUsed = true; // Mark the previous box as used
+    newBox.currentNum = total; // Update the new box with the current value
+    setBoxes([...boxes]); // Update the boxes state
+    setDisplaySequence([]);
+    setSelectedBoxIndex(index); // Set the selected box index to the new box
+    setMessage("Number selected. Choose an operator."); // Update the message
+  };
   // Handle clicking an operator button
-  const handleOperatorClick = useCallback(
-    (operator) => {
-      if (gameOver) return; // Ignore click if game over
+  const handleOperatorClick = (operator) => {
+    if (gameOver) return; // Ignore click if game over
 
-      // Must have clicked a number last
-      if (lastClickedType !== "number" || currentValue === null) {
-        setMessage("Select a number first.");
-        return;
-      }
+    // Must have clicked a number last
+    if (lastClickedType !== "number") {
+      setMessage("Select a number first.");
+      return;
+    }
 
-      // Cannot click operator if all numbers are used
-      if (availableIndices.size === 0) {
-        setMessage("All numbers used. Check result or clear.");
-        return;
-      }
+    if (displaySequence.length === 0 && selectedBoxIndex != null) {
+      setDisplaySequence([boxes[selectedBoxIndex].currentNum, operator]); // Set the display sequence to the selected number
+    }
+    if (displaySequence.length === 1) {
+      setDisplaySequence((prev) => {
+        const newSequence = [...prev]; // Create a new sequence array
+        newSequence.push(operator); // Add the operator to the sequence
+        return newSequence; // Return the new sequence
+      });
+    }
 
-      setDisplaySequence((prev) => [...prev, operator]);
-      setLastClickedType("operator");
-      setMessage("Operator selected. Choose the next number.");
-    },
-    [gameOver, lastClickedType, currentValue, availableIndices.size]
-  );
+    setLastClickedType("operator");
+    setMessage("Operator selected. Choose the next number.");
+  };
+
   const OpButton = ({ op }) => {
     return (
       <button
         className="small"
         onClick={() => handleOperatorClick(op)}
-        disabled={
-          lastClickedType !== "number" ||
-          gameOver ||
-          availableIndices.size === 0
-        }
+        disabled={lastClickedType !== "number" || gameOver}
       >
         <h3>{op}</h3>
       </button>
@@ -219,15 +309,12 @@ export const Make24Game = () => {
   const NumButton = ({ index }) => {
     return (
       <button
-        className="large "
-        onClick={() => handleNumberClick(index)}
-        disabled={
-          !availableIndices.has(index) ||
-          lastClickedType === "number" ||
-          gameOver
-        }
+        className={`large ${boxes[index]?.isSelected ? "secondary" : ""} ${
+          boxes[index]?.isUsed === true ? "hide" : "show"
+        }`}
+        onClick={() => handleBoxClick(index)}
       >
-        <h5> {initialNumbers[index]}</h5>
+        <h5> {boxes[index]?.currentNum}</h5>
       </button>
     );
   };
@@ -295,7 +382,6 @@ export const Make24Game = () => {
           <button
             className="small-round error white-text"
             onClick={clearSequence}
-            disabled={displaySequence.length === 0 && !gameOver}
           >
             <i>backspace</i>
           </button>
